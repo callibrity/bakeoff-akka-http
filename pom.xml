@@ -13,8 +13,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flyway.version>9.3.0</flyway.version>
         <postgresql.version>42.5.0</postgresql.version>
-        <graal.akka.version>0.5.0</graal.akka.version>
-        <graal.plugin.version>0.9.13</graal.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -53,25 +51,11 @@
             <version>${akka.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.akka</groupId>
-            <artifactId>akka-stream_${scala.binary.version}</artifactId>
-            <version>${akka.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.vmencik</groupId>
-            <artifactId>graal-akka-http_${scala.binary.version}</artifactId>
-            <version>${graal.akka.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.vmencik</groupId>
-            <artifactId>graal-akka-slf4j_${scala.binary.version}</artifactId>
-            <version>${graal.akka.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>io.r2dbc</groupId>
             <artifactId>r2dbc-pool</artifactId>
