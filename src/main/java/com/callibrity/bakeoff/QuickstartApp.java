@@ -30,7 +30,7 @@ public class QuickstartApp {
 // --------------------------- main() method ---------------------------
 
     public static void main(String[] args) throws Exception {
-        final Config config = ConfigFactory.defaultApplication();
+        final Config config = ConfigFactory.defaultApplication().resolve();
 
         Config dbConfig = config.getConfig("db");
 
