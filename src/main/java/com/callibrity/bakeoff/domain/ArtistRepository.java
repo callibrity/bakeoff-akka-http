@@ -101,7 +101,7 @@ public class ArtistRepository extends AbstractBehavior<ArtistRepository.Command>
                 .defaultIfEmpty(false)
                 .subscribeOn(scheduler)
                 .subscribe(updated -> {
-                    if (updated) {
+                    if (Boolean.TRUE.equals(updated)) {
                         command.replyTo.tell(Optional.of(new Artist(command.getArtistId(), command.getName(), command.getGenre())));
                     } else {
                         command.replyTo.tell(Optional.empty());
@@ -110,17 +110,8 @@ public class ArtistRepository extends AbstractBehavior<ArtistRepository.Command>
         return this;
     }
 
-    private Flux<Result> resultFlux(Function<Connection, Statement> fn) {
-        return Flux.usingWhen(publisher, conn -> Flux.from(fn.apply(conn).execute()), Connection::close);
-    }
-
     private Mono<Result> resultMono(Function<Connection, Statement> fn) {
         return Mono.usingWhen(publisher, conn -> Mono.from(fn.apply(conn).execute()), Connection::close);
-    }
-
-    private Flux<Row> rowFlux(Function<Connection, Statement> fn) {
-        return resultFlux(fn)
-                .flatMap(result -> Flux.from(result.map((row, meta) -> row)));
     }
 
     private Mono<Row> rowMono(Function<Connection, Statement> fn) {
