@@ -25,7 +25,7 @@ import java.util.concurrent.CompletionStage;
 import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 
 //#main-class
-public class QuickstartApp {
+public class BakeoffApp {
 
 // --------------------------- main() method ---------------------------
 
@@ -57,8 +57,7 @@ public class QuickstartApp {
 
     private static Flyway createFlyway(Config config) {
         final String url = String.format("jdbc:postgresql://%s:%d/%s", config.getString("host"), config.getInt("port"), config.getString("name"));
-        Flyway flyway = Flyway.configure().dataSource(url, config.getString("user"), config.getString("pass")).load();
-        return flyway;
+        return Flyway.configure().dataSource(url, config.getString("user"), config.getString("pass")).load();
     }
 
     private static ConnectionFactory createConnectionFactory(Config config) {
